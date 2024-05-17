@@ -4,28 +4,31 @@ set -e
 echo '🏗️👷 Styling, testing and building your project before committing'
 
 # Check Prettier standards
-npm run check-format ||
-(
-    echo '🤢🤮🤢🤮 Its FOKING RAW - Your styling looks disgusting. 🤢🤮🤢🤮
-            Prettier Check Failed. Run npm run format, add changes and try commit again.';
-    false;
-)
+if ! npm run check-format; then
+    echo '🤢🤮🤢🤮 It’s FOKING RAW - Your styling looks disgusting. 🤢🤮🤢🤮
+          Prettier Check Failed. Run npm run format, add changes and try to commit again.'
+    exit 1
+else
+    echo '✨🖌️ Styling looks spectacular! On to the next check...'
+fi
 
-# Check ESLint Standards
- npm run check-lint ||
-# (
-#         echo '😤🏀👋😤 Get that weak shit out of here! 😤🏀👋😤
-#                 ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
-#         false;
-# )
+# Check ESLint standards
+if ! npm run lint; then
+    echo '😤🏀👋😤 Get that weak stuff out of here! 😤🏀👋😤
+          ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
+    exit 1
+else
+    echo '🛡️🧹 ESLint is pleased. Moving forward...'
+fi
 
-# Check tsconfig standards
- npm run check-types ||
-# (
-#     echo '🤡😂❌🤡 Failed Type check. 🤡😂❌🤡
-#             Are you seriously trying to write that? Make the changes required above.'
-#     false;
-# )
+# Check tsconfig standards (TypeScript type-checking)
+if ! npm run check-types; then
+    echo '🤡😂❌🤡 Failed Type check. 🤡😂❌🤡
+          Are you seriously trying to write that? Make the changes required above.'
+    exit 1
+else
+    echo '🏆📚 TypeScript types are impeccable. Almost there...'
+fi
 
 
 # If everything passes... Now we can commit
