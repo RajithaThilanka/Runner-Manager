@@ -18,14 +18,7 @@
     "lint:fix": "eslint \"src/**/*.{js,ts,tsx}\" --quiet --fix",
     "test": "jest",
     "format": "prettier --write .",
-    "prepare": "husky install",
-    "lint-staged": {
-      "*.{js,jsx,ts,tsx}": [
-        "prettier --write",
-        "eslint --fix",
-        "git add ."
-      ]
-    }
+    "prepare": "husky install"
   },
   "lint-stages": {
     "**/*": "prettier --write --ingore-unknown"
@@ -83,9 +76,9 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "eslint --fix",
-      "git add"
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
     ]
   },
   "private": true
