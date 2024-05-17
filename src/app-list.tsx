@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import React from "react";
 
-const AppList = () => {
+const AppList = ({ id }) => {
   return (
     <View>
       <Text>apppppppp</Text>
