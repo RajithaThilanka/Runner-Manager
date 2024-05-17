@@ -4,7 +4,7 @@ import React from "react";
 const AppList = () => {
   return (
     <View>
-      <Text>app</Text>
+      <Text>apppppppp</Text>
     </View>
   );
 };
