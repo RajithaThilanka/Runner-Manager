@@ -4,7 +4,7 @@ import React from "react";
 const AppList = ({ id }) => {
   return (
     <View>
-      <Text>apppppppp</Text>
+      <Text>apppppppdddddddddddddddddd</Text>
     </View>
   );
 };
