@@ -21,7 +21,7 @@
     "check-types": "tsc --pretty --noEmit",
     "format": "prettier --write .",
     "check-lint": "eslint . ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "prepare": "husky install",
+    "prepare": "husky",
     "lint-staged": {
       "*.{js,jsx,ts,tsx}": [
         "prettier --write .",
