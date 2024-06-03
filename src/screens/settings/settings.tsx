@@ -23,7 +23,7 @@ const Setting = () => {
         await Updates.fetchUpdateAsync();
         Alert.alert(
           "Update Downloaded",
-          "Updates have been downloaded successfully. Restart now to apply updates?",
+          "Updates have been downloaded successfully. Restart now to apply updates..?",
           [
             {
               text: "Later",

@@ -1,29 +1,37 @@
-echo '🏗️👷 Styling, testing and building your project before committing'
+echo '🏗️👷 Styling, testing, and building your project before committing'
 
 # Check Prettier standards
-npm run check-format ||
+npm run check-format &&
 (
-    echo '🤢🤮🤢🤮 Its FOKING RAW - Your styling looks disgusting. 🤢🤮🤢🤮
-            Prettier Check Failed. Run npm run format, add changes and try commit again.';
+    echo '✨💅 Format Check Passed! 💅✨';
+) ||
+(
+    echo '🚫🤢🤮 Formatting Error 🤢🤮🚫
+          Run npm run format, add changes, and try again.';
     false;
 )
 
 # Check ESLint Standards
- npm run lint ||
- (
-        echo '😤🏀👋😤 Get that weak shit out of here! 😤🏀👋😤
-                ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
-        false;
- )
+npm run lint &&
+(
+    echo '🎉🧹 Lint Check Passed! 🧹🎉';
+) ||
+(
+    echo '🚫⚠️😤 Linting Error 😤⚠️🚫
+          Fix the Linting Errors, add changes, and try again.';
+    false;
+)
 
 # Check tsconfig standards
- npm run check-types ||
+npm run check-types &&
 (
-     echo '🤡😂❌🤡 Failed Type check. 🤡😂❌🤡
-            Are you seriously trying to write that? Make the changes required above.'
-     false;
- )
-
+    echo '✅🔍 Type Check Passed! 🔍✅';
+) ||
+(
+    echo '🚫💔😂❌ Type Error 😂❌💔🚫
+          Fix the Type Errors, add changes, and try again.';
+    false;
+)
 
 # If everything passes... Now we can commit
-echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'
+echo '🚀✅ All checks passed. Committing... ✅🚀'
