@@ -17,7 +17,7 @@ const Account = () => {
       <View style={styles.header}>
         <Avatar size="xlarge" rounded source={getImage("defaultProfile")} />
         <Text h4 style={styles.name}>
-          Rajitha Thilankadddd
+          Rajitha Thilanka
         </Text>
       </View>
       <View style={styles.details}>

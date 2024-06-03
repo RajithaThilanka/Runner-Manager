@@ -1,5 +1,5 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+#!/usr/bin/env sh
+. "${0%/*}/h"
 
 echo '🏗️👷 Styling, testing and building your project before committing'
 
