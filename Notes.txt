@@ -1,0 +1,151 @@
+#Technology 
+React Native
+React
+TilwindCSS
+Redux
+React Native Elements
+React Navigations
+React Native Maps
+npm run androide
+
+
+
+npx create-expo-app TripSync
+expo init EasUpdateTestproj
+npx create-expo-app@latest
+
+cd TripSync
+npm install -g expo-cli
+npm install --save-dev prettier
+npm install --save-dev eslint
+npm install --save-dev eslint-plugin-react
+
+npx expo start
+npm install @reduxjs/toolkit
+npm install -g expo-cli
+npx expo install expo-updates
+expo login 
+expo publish 
+npm install react-redux
+npm install react-native-elements
+npm i tailwind-react-native-classnames
+npm install @rneui/themed @rneui/base
+npm install @rneui/base@edge @rneui/themed@edge
+npm install react-native-vector-icons
+npm install react-native-safe-area-context
+npm install @react-navigation/native
+npm install @react-navigation/stack
+npx expo install react-native-screens react-native-safe-area-context
+npm install react-native-screens react-native-safe-area-context
+npm install react-native-google-places-autocomplete --save
+npm install dotenv
+npm install formik --save
+npm install @reduxjs/toolkit react-redux @reduxjs/toolkit-query
+npm install husky --save-dev
+npx husky install
+npm install react-native-dotenv
+npm install formik yup
+npm install @react-navigation/drawer
+npm install react-native-gesture-handler@~2.14.0 react-native-reanimated@~3.6.2
+npm install @react-navigation/bottom-tabs
+npm install @expo/vector-icons
+npm install react-native-maps@1.10.0
+npm i react-native-maps-directions
+npm install @react-native-community/geolocation
+expo install expo-location
+
+
+npm install expo-updates
+
+
+
+expo doctor
+
+
+//Export App To Apk 
+npm install -g eas-cli
+
+eas login
+eas build:configure
+eas update:configure
+
+set GOOGLE_MAPS_APIKEY=AIzaSyBVkxVxV0xL4fpi27jH3IMv-_Qhk8MShDA
+eas build -p android
+
+https://github.com/google/bundletool/releases
+
+java -jar bundletool-all-1.16.0.jar validate --bundle=application.aab 
+keytool -genkey -v -keystore keystore.jks -alias your_alias -keyalg RSA -keysize 2048 -validity 10000
+
+java -jar bundletool-all-1.16.0.jar build-apks --bundle=application.aab --output=trip-sync-app.apks --ks=keystore.jks --ks-pass=pass:40553817 --ks-key-alias=your_alias --key-pass=pass:40553817 --mode=universal
+
+
+
+pass=pass:40553817 --mode=universal
+
+
+
+
+Direction API
+Places API
+Distance Matrix API
+
+
+
+//Push Notification
+https://app.nativenotify.com/in-app
+
+npm install native-notify
+npx expo install expo-device expo-notifications expo-constants
+
+
+
+
+// React Native Best Components
+
+npm i react-native-gifted-chat
+npm i victory-native
+npm i react-native-toast-message
+npm i react-native-toast-notifications
+npm i react-content-loader
+npm i react-native-pager-view
+npx expo install react-native-pager-view
+npx expo install expo-blur
+npm i expo-blur
+npm i react-native-calendars
+FlatList
+https://app.nativenotify.com/in-app
+
+
+npm expo prebuild
+expo router
+re animator
+expo tools
+
+
+
+
+
+//Expo Updates
+
+npm install --global eas-cli
+eas login
+npx expo install expo-updates
+eas update:configure
+eas build:configure
+eas build -p android
+eas build -p ios
+
+
+eas update --branch development --message "Fixes typo"
+eas update --branch production --message "Fixes typo"
+
+
+//Husky Configure
+npm init @eslint/config@latest
+npm install --save-dev --save-exact prettier
+node --eval "fs.writeFileSync('.prettierrc','{}\n')"
+npm install eslint-config-prettier
+npm i eslint-config-prettier -D
+npm install --save-dev husky
+npx husky init

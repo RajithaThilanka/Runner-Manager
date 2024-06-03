@@ -8,20 +8,20 @@
       "distribution": "internal",
       "channel": "development",
       "env": {
-        "GOOGLE_MAPS_APIKEY": "AIzaSyBVkxVxV0xL4fpi27jH3IMv-_Qhk8MShDA"
+        "GOOGLE_MAPS_APIKEY": "abc123"
       }
     },
     "preview": {
       "distribution": "internal",
       "channel": "preview",
-       "env": {
-        "GOOGLE_MAPS_APIKEY": "AIzaSyBVkxVxV0xL4fpi27jH3IMv-_Qhk8MShDA"
+      "env": {
+        "GOOGLE_MAPS_APIKEY": "abc123"
       }
     },
     "production": {
       "channel": "production",
       "env": {
-        "GOOGLE_MAPS_APIKEY": "AIzaSyBVkxVxV0xL4fpi27jH3IMv-_Qhk8MShDA"
+        "GOOGLE_MAPS_APIKEY": "abc123"
       }
     }
   },
