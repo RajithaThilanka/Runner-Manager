@@ -32,7 +32,18 @@
       "policy": "appVersion"
     },
     "updates": {
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/8f79e146-36e5-4733-8f1e-a73c7b7f08c0"
-    }
+    },
+    "plugins": [
+      [
+        "expo-updates",
+        {
+          "username": "rajithathilanka"
+        }
+      ]
+    ]
   }
 }

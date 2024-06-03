@@ -6,14 +6,23 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "channel": "development"
+      "channel": "development",
+      "env": {
+        "GOOGLE_MAPS_APIKEY": "AIzaSyBVkxVxV0xL4fpi27jH3IMv-_Qhk8MShDA"
+      }
     },
     "preview": {
       "distribution": "internal",
-      "channel": "preview"
+      "channel": "preview",
+       "env": {
+        "GOOGLE_MAPS_APIKEY": "AIzaSyBVkxVxV0xL4fpi27jH3IMv-_Qhk8MShDA"
+      }
     },
     "production": {
-      "channel": "production"
+      "channel": "production",
+      "env": {
+        "GOOGLE_MAPS_APIKEY": "AIzaSyBVkxVxV0xL4fpi27jH3IMv-_Qhk8MShDA"
+      }
     }
   },
   "submit": {
