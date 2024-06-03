@@ -34,4 +34,4 @@ npm run check-types &&
 )
 
 # If everything passes... Now we can commit
-echo '🚀✅ All checks passed. Committing... ✅🚀'
+echo '🚀✅ All checks passed. I am committing this now. ✅🚀'
