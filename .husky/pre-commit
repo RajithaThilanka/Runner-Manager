@@ -12,7 +12,7 @@ npm run check-format &&
 )
 
 # Check ESLint Standards
-npm run lint &&
+npm run lint-custom &&
 (
     echo '🎉🧹 Lint Check Passed! 🧹🎉';
 ) ||
