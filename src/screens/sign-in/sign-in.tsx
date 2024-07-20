@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -17,6 +17,9 @@ import { SignInProps } from "./signin.types";
 import { useNavigation } from "@react-navigation/native";
 import { NavOptionScreenProps } from "../home/home.types";
 import { Text } from "@rneui/base";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store/root-reducer";
+import { login } from "../../auth/authActions";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -24,10 +27,19 @@ const LoginSchema = Yup.object().shape({
 });
 
 const SignIn: React.FC<SignInProps> = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation<NavOptionScreenProps>();
   const currentYear = new Date().getFullYear();
+
+  const authState = useSelector((state: RootState) => state.auth);
+  useEffect(() => {
+    if (authState?.accessToken) {
+      navigation.navigate("Home");
+    }
+  }, [authState, navigation]);
+
   const handleLoginPress = (): void => {
-    navigation.navigate("Home");
+    dispatch(login() as never);
   };
 
   return (

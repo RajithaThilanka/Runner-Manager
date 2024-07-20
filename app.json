@@ -11,8 +11,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "scheme": "xbroker",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.xbroker.mobile.RunnerManager"
     },
     "android": {
       "adaptiveIcon": {
@@ -44,9 +46,17 @@
         {
           "username": "rajithathilanka"
         }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "manifestPlaceholders": {
+              "appAuthRedirectScheme": "xbroker"
+            }
+          }
+        }
       ]
-    ],
-    "scheme": "xbroker",
-    "jsEngine": "hermes"
+    ]
   }
 }

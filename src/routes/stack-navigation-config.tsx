@@ -5,20 +5,26 @@ import SignIn from "../screens/sign-in/sign-in";
 import SignUp from "../screens/sign-in/sign-up";
 import DrawerNavigatorConfig from "./drawer-navigation-conig";
 import GoogleMapScreen from "../screens/home/components/google-map";
+import { RootState } from "../store/root-reducer";
+import { useSelector } from "react-redux";
+
 const Stack = createStackNavigator();
 
-const StackNavigatorConfig = () => {
+const StackNavigatorConfig: React.FC = () => {
   const [loading, setLoading] = useState(true);
+  const authState = useSelector((state: RootState) => state.auth);
+  useEffect(() => {}, [authState]);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setLoading(false);
     }, 1000);
+    return () => clearTimeout(timer);
   }, []);
 
-  return (
-    <Stack.Navigator initialRouteName="Loading">
-      {loading ? (
+  const renderScreens = () => {
+    if (loading) {
+      return (
         <Stack.Screen
           name="Loading"
           component={Loading}
@@ -26,22 +32,10 @@ const StackNavigatorConfig = () => {
             headerShown: false,
           }}
         />
-      ) : (
+      );
+    } else if (authState?.accessToken) {
+      return (
         <>
-          <Stack.Screen
-            name="Sign In"
-            component={SignIn}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="SignUp"
-            component={SignUp}
-            options={{
-              headerShown: false,
-            }}
-          />
           <Stack.Screen
             name="Home"
             component={DrawerNavigatorConfig}
@@ -57,7 +51,32 @@ const StackNavigatorConfig = () => {
             }}
           />
         </>
-      )}
+      );
+    } else {
+      return (
+        <>
+          <Stack.Screen
+            name="SignIn"
+            component={SignIn}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="SignUp"
+            component={SignUp}
+            options={{
+              headerShown: false,
+            }}
+          />
+        </>
+      );
+    }
+  };
+
+  return (
+    <Stack.Navigator initialRouteName="Loading">
+      {renderScreens()}
     </Stack.Navigator>
   );
 };
