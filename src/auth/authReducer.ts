@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AuthorizeResult } from "react-native-app-auth";
 import {
   CLEAR_USER,
   ClearUserAction,
@@ -11,7 +10,13 @@ import {
   SetUserAction,
 } from "./authActions";
 
-type AuthState = Partial<AuthorizeResult> & {
+type AuthState = {
+  accessToken?: string;
+  idToken?: string;
+  refreshToken?: string;
+  expiresIn?: number;
+  scope?: string;
+  tokenType?: string;
   user?: any;
 };
 

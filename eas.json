@@ -8,20 +8,23 @@
       "distribution": "internal",
       "channel": "development",
       "env": {
-        "GOOGLE_MAPS_APIKEY": "abc123"
+        "GOOGLE_MAPS_APIKEY": "abc123",
+        "EAS_BUILD_APP_AUTH_REDIRECT_SCHEME": "xbroker"
       }
     },
     "preview": {
       "distribution": "internal",
       "channel": "preview",
       "env": {
-        "GOOGLE_MAPS_APIKEY": "abc123"
+        "GOOGLE_MAPS_APIKEY": "abc123",
+        "EAS_BUILD_APP_AUTH_REDIRECT_SCHEME": "xbroker"
       }
     },
     "production": {
       "channel": "production",
       "env": {
-        "GOOGLE_MAPS_APIKEY": "abc123"
+        "GOOGLE_MAPS_APIKEY": "abc123",
+        "EAS_BUILD_APP_AUTH_REDIRECT_SCHEME": "xbroker"
       }
     }
   },

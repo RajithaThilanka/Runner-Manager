@@ -1,9 +1,10 @@
 import * as AuthSession from "expo-auth-session";
 import { ThunkAction } from "redux-thunk";
-import { Action } from "redux";
+import { Action, Dispatch } from "redux";
 import { jwtDecode, JwtPayload } from "jwt-decode";
 import axios from "axios";
 import { RootState } from "../store/root-reducer";
+import * as SecureStore from "expo-secure-store";
 
 const AUTH_CLIENT_ID = `5719e40c-99bd-43ae-bc26-162e61907c0f`;
 
@@ -13,6 +14,11 @@ export const LOGOUT = "LOGOUT";
 export const SET_USER = "SET_USER";
 export const CLEAR_USER = "CLEAR_USER";
 export const SET_PROFILE_IMAGE = "SET_PROFILE_IMAGE";
+
+// SecureStore keys
+export const TOKEN_KEY = "xbrokerjwttoken";
+export const REFRESH_TOKEN_KEY = "xbrokerrefreshtoken";
+export const TOKEN_EXPIRE_IN = "xbrokerexptokenin";
 
 export interface LoginSuccessAction extends Action<typeof LOGIN_SUCCESS> {
   payload: {
@@ -73,6 +79,7 @@ interface CustomTokenResponse extends AuthSession.TokenResponse {
   token_type?: string;
   error?: string;
   error_description?: string;
+  tokenResponse?: string;
 }
 
 const fetchProfileImage = async (
@@ -171,6 +178,13 @@ export const login =
           return;
         }
 
+        if (tokenResponse?.refreshToken) {
+          await SecureStore.setItemAsync(
+            REFRESH_TOKEN_KEY,
+            tokenResponse?.refreshToken as string
+          );
+        }
+
         dispatch<LoginSuccessAction>({
           type: LOGIN_SUCCESS,
           payload: {
@@ -198,8 +212,59 @@ export const login =
 export const logout =
   (): ThunkAction<void, RootState, unknown, Action<string>> =>
   async (dispatch) => {
-    // Implement logout functionality
-    dispatch<LogoutAction>({ type: LOGOUT });
-    //Clear use when log out
-    dispatch(clearUser());
+    try {
+      await SecureStore.deleteItemAsync(TOKEN_KEY);
+      dispatch<LogoutAction>({ type: LOGOUT });
+      dispatch(clearUser());
+    } catch (error) {
+      console.error("Logout error", error);
+    }
   };
+
+// Function to refresh the access token using refresh token
+export const refreshAccessToken = async (
+  dispatch: Dispatch<LoginSuccessAction>
+) => {
+  try {
+    const refreshToken = await SecureStore.getItemAsync(REFRESH_TOKEN_KEY);
+    if (!refreshToken) {
+      throw new Error("No refresh token available");
+    }
+
+    const tokenResponse = await AuthSession.refreshAsync(
+      {
+        clientId: AUTH_CLIENT_ID,
+        refreshToken: refreshToken,
+      },
+      discovery
+    );
+
+    if (tokenResponse?.accessToken) {
+      if (tokenResponse.refreshToken) {
+        await SecureStore.setItemAsync(
+          REFRESH_TOKEN_KEY,
+          tokenResponse.refreshToken
+        );
+      }
+
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: {
+          accessToken: tokenResponse.accessToken,
+          idToken: tokenResponse.idToken as string,
+          refreshToken: tokenResponse.refreshToken as string,
+          expiresIn: tokenResponse.expiresIn as number,
+          scope: tokenResponse.scope as string,
+          tokenType: tokenResponse.tokenType as string,
+        },
+      });
+
+      return tokenResponse.accessToken;
+    } else {
+      throw new Error("Failed to refresh access token");
+    }
+  } catch (error) {
+    console.error("Error refreshing access token:", error);
+    throw error;
+  }
+};
